@@ -94,8 +94,8 @@ Component.Snake = function(canvas, conf) {
 
     // Add food on stage
     this.stage.food = {
-			x: Math.round(Math.random() * (this.stage.width - this.stage.conf.cw) / this.stage.conf.cw),
-			y: Math.round(Math.random() * (this.stage.height - this.stage.conf.cw) / this.stage.conf.cw),
+			x: Math.round(Math.random() * ((this.stage.width-2) - this.stage.conf.cw) / this.stage.conf.cw),
+			y: Math.round(Math.random() * ((this.stage.height-2) - this.stage.conf.cw) / this.stage.conf.cw),
 		};
 	};
 
@@ -159,7 +159,9 @@ Game.Draw = function(context, snake) {
     }
 
     // Logic of Snake food
-    if (nx == snake.stage.food.x && ny == snake.stage.food.y) {
+    var hitboxX=[snake.stage.food.x,snake.stage.food.x+1 , snake.stage.food.x-1];
+    var hitboxY=[snake.stage.food.y,snake.stage.food.y+1 , snake.stage.food.y-1];
+    if (hitboxX.includes(nx) && hitboxY.includes(ny)) {
       var tail = {x: nx, y: ny};
       snake.stage.score++;
       snake.initFood();
@@ -177,10 +179,10 @@ Game.Draw = function(context, snake) {
     }
 
     // Draw Food
-    this.drawSemla(snake.stage.food.x, snake.stage.food.y);
+    this.drawSemla(snake.stage.food.x-2, snake.stage.food.y-1);
 
     // Draw Score
-    context.fillText('Score: ' + snake.stage.score, 5, (snake.stage.height - 5));
+    context.fillText('Semlor: ' + snake.stage.score, 5, (snake.stage.height - 5));
   };
 
   // Draw Cell
