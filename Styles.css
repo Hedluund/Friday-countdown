@@ -21,4 +21,7 @@ canvas {
 
 h1 {
   border-top: -50px;
+  font-family: Century Gothic, sans-serif;
+  text-decoration: underline;
+  text-decoration-color: #a7513ef0;
 }
